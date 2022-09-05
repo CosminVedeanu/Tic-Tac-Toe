@@ -10,6 +10,7 @@ def display_board(board):
     print('-----------')
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
 
+# feedback: Delete unnenecery comments. Do same for downer comments
 #test_board = ['#','X',' ','X','O','X','O','X','O','X']
 #test_board = ['']*10
 #display_board(test_board)
@@ -39,13 +40,13 @@ def place_marker(board, marker, position):
 
 
 def win_check(board, mark):
-    return ((board[7] == mark and board[8] == mark and board[9] == mark)  # orizonat 1
+    return ((board[7] == mark and board[8] == mark and board[9] == mark)  # orizontal 1
             or (board[4] == mark and board[5] == mark and board[6] == mark)  # orizontal 2
             or (board[1] == mark and board[2] == mark and board[3] == mark)  # orizontal 3
             or (board[7] == mark and board[4] == mark and board[1] == mark)  # vertical 1
             or (board[8] == mark and board[5] == mark and board[2] == mark)  # vertical 2
             or (board[9] == mark and board[6] == mark and board[3] == mark)  # vertical 3
-            or (board[1] == mark and board[5] == mark and board[9] == mark)  # digonal 1
+            or (board[1] == mark and board[5] == mark and board[9] == mark)  # diagonal 1
             or (board[7] == mark and board[5] == mark and board[3] == mark)  # diagonal 2
             )
 
@@ -75,8 +76,12 @@ def player_choice(board):
     while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or not space_check(board, position):
         try:
             position = int(input('Alege o pozitie de la 1 la 9: '))
+            # feedback: Cand faci if de un boolean nu e nevoie sa il mai compari cu False/True pentru ca variabilia
+            # respectiva are deja valoarea True/false
             if space_check(board, position) == False:
                 print("Pozitia este ocupata, alege alta pozitie")
+        # feedback: Ca idee dupa except e de preferat sa pui mereu numele erorii in cauza. Numele erorii in cazul tau
+        # cred ca e TypeError
         except:
             print("Te rog sa introduci o valoare valida! ")
 
@@ -98,5 +103,7 @@ def game(turn, board, player_marker):
             return False
     return True
 def replay():
+    # feedback: Scrie propozitia corect gramatical. Inainte de de daca ar fi "." si ar incepe o noua propozitie.
     return input('Daca vrei sa joci din nou sa joci din nou introdu orice valoare daca nu apasa ENTER')
 
+# feedback: Daca ai scris variabilele in engleza, scrie tot in engleza, adica si numele fisierelor si mesajele afisate.
