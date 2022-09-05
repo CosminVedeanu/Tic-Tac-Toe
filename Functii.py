@@ -2,8 +2,8 @@ import os
 import random
 
 def display_board(board):
-    #os.system('cls')  # on windows
-    print('\n'*100)
+    os.system('cls')  # on windows
+    #print('\n'*100)
     print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('-----------')
     print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
@@ -82,6 +82,20 @@ def player_choice(board):
 
     return position
 
+def game(turn, board, player_marker, game_on):
+    display_board(board)
+    position = player_choice(board)
+    place_marker(board, player_marker, position)
 
+    if win_check(board, player_marker):
+        display_board(board)
+        print(turn + 'a câstigat!')
+        return False
+    else:
+        if full_board_check(board):
+            display_board(board)
+            print('Jocul se termina ca remiza!')
+    return True
 def replay():
     return input('Daca vrei sa joci din nou sa joci din nou introdu orice valoare daca nu apasa ENTER')
+
