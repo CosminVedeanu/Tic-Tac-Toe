@@ -1,4 +1,4 @@
-from Functii import display_board, player_input, place_marker, win_check, choose_first,space_check, full_board_check, player_choice, replay
+from Functii import display_board, player_input, place_marker, win_check, choose_first,space_check, full_board_check, player_choice, game, replay
 
 print('Welcome to Tic Tac Toe!')
 
@@ -21,40 +21,12 @@ while True:
     while game_on:
         if turn == 'Player 1':
         # Player 1 Turn
-            display_board(blackboard)
-            position = player_choice(blackboard)
-            place_marker(blackboard, player1_marker, position)
-
-            if win_check(blackboard, player1_marker):
-                display_board(blackboard)
-                print('Player 1 a câstigat!')
-                game_on = False
-            else:
-                if full_board_check(blackboard):
-                    display_board(blackboard)
-                    print('Jocul se termina ca remiza!')
-                    break
-                else:
-                    turn = 'Player 2'
+            game_on = game(turn, blackboard, player1_marker, game_on)
+            turn = 'Player 2'
         else:
         # Player2's turn.
-
-            display_board(blackboard)
-            position = player_choice(blackboard)
-            place_marker(blackboard, player2_marker, position)
-
-            if win_check(blackboard, player2_marker):
-                display_board(blackboard)
-                print('Player 2 a câstigat!')
-                game_on = False
-            else:
-                if full_board_check(blackboard):
-                    display_board(blackboard)
-                    print('Jocul se termina ca remiza!')
-                    break
-                else:
-                    turn = 'Player 1'
-    # pass
+            game_on = game(turn, blackboard, player2_marker, game_on)
+            turn = 'Player 1'
 
     if not replay():
         break
