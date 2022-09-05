@@ -6,7 +6,7 @@ while True:
     # Set the game up here
 
     blackboard = [' '] * 10
-    player1_marker, player2_marker = player_input()  # de verificat valoarea returnata
+    player1_marker, player2_marker = player_input()
     turn = choose_first()
     print(turn + ' este primul! ')
 
