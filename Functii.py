@@ -78,23 +78,24 @@ def player_choice(board):
             if space_check(board, position) == False:
                 print("Pozitia este ocupata, alege alta pozitie")
         except:
-            print("Te rog introduce o valoare valida")
+            print("Te rog sa introduci o valoare valida! ")
 
     return position
 
-def game(turn, board, player_marker, game_on):
+def game(turn, board, player_marker):
     display_board(board)
     position = player_choice(board)
     place_marker(board, player_marker, position)
 
     if win_check(board, player_marker):
         display_board(board)
-        print(turn + 'a câstigat!')
+        print(turn + ' a câstigat! ')
         return False
     else:
         if full_board_check(board):
             display_board(board)
-            print('Jocul se termina ca remiza!')
+            print('Jocul se termina ca remiza! ')
+            return False
     return True
 def replay():
     return input('Daca vrei sa joci din nou sa joci din nou introdu orice valoare daca nu apasa ENTER')
