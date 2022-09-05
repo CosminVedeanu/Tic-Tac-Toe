@@ -89,7 +89,7 @@ def game(turn, board, player_marker):
 
     if win_check(board, player_marker):
         display_board(board)
-        print(turn + ' a câstigat! ')
+        print('\n' + turn + ' a câstigat! \n')
         return False
     else:
         if full_board_check(board):
