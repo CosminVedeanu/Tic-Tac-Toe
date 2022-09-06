@@ -3,18 +3,12 @@ import random
 
 def display_board(board):
     os.system('cls')  # on windows
-    #print('\n'*100)
+
     print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('-----------')
     print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
     print('-----------')
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
-
-# feedback: Delete unnenecery comments. Do same for downer comments
-#test_board = ['#','X',' ','X','O','X','O','X','O','X']
-#test_board = ['']*10
-#display_board(test_board)
-
 
 def player_input():
     marker = ''
@@ -28,29 +22,19 @@ def player_input():
         return 'O', 'X'
 
 
-#player_input()
-
-
-
 def place_marker(board, marker, position):
     board[position] = marker
 
-#place_marker(test_board,'$',5)
-#display_board(test_board)
-
-
 def win_check(board, mark):
-    return ((board[7] == mark and board[8] == mark and board[9] == mark)  # orizontal 1
-            or (board[4] == mark and board[5] == mark and board[6] == mark)  # orizontal 2
-            or (board[1] == mark and board[2] == mark and board[3] == mark)  # orizontal 3
-            or (board[7] == mark and board[4] == mark and board[1] == mark)  # vertical 1
-            or (board[8] == mark and board[5] == mark and board[2] == mark)  # vertical 2
-            or (board[9] == mark and board[6] == mark and board[3] == mark)  # vertical 3
-            or (board[1] == mark and board[5] == mark and board[9] == mark)  # diagonal 1
-            or (board[7] == mark and board[5] == mark and board[3] == mark)  # diagonal 2
+    return ((board[7] == mark and board[8] == mark and board[9] == mark)
+            or (board[4] == mark and board[5] == mark and board[6] == mark)
+            or (board[1] == mark and board[2] == mark and board[3] == mark)
+            or (board[7] == mark and board[4] == mark and board[1] == mark)
+            or (board[8] == mark and board[5] == mark and board[2] == mark)
+            or (board[9] == mark and board[6] == mark and board[3] == mark)
+            or (board[1] == mark and board[5] == mark and board[9] == mark)
+            or (board[7] == mark and board[5] == mark and board[3] == mark)
             )
-
-#win_check(test_board,'X')
 
 def choose_first():
     if random.randint(1, 2) == 1:
@@ -76,15 +60,12 @@ def player_choice(board):
     while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or not space_check(board, position):
         try:
             position = int(input('Alege o pozitie de la 1 la 9: '))
-            # feedback: Cand faci if de un boolean nu e nevoie sa il mai compari cu False/True pentru ca variabilia
-            # respectiva are deja valoarea True/false
-            if space_check(board, position) == False:
+            if not space_check(board, position):
                 print("Pozitia este ocupata, alege alta pozitie")
-        # feedback: Ca idee dupa except e de preferat sa pui mereu numele erorii in cauza. Numele erorii in cazul tau
-        # cred ca e TypeError
-        except:
-            print("Te rog sa introduci o valoare valida! ")
-
+        except IndexError:
+            print("Te rog sa introduci o valoare de la 1 la 9! ")
+        except ValueError:
+            print("Te rog sa introduci o valoare valida, o cifra de la 1 la 9! ")
     return position
 
 def game(turn, board, player_marker):
@@ -103,7 +84,5 @@ def game(turn, board, player_marker):
             return False
     return True
 def replay():
-    # feedback: Scrie propozitia corect gramatical. Inainte de de daca ar fi "." si ar incepe o noua propozitie.
-    return input('Daca vrei sa joci din nou sa joci din nou introdu orice valoare daca nu apasa ENTER')
 
-# feedback: Daca ai scris variabilele in engleza, scrie tot in engleza, adica si numele fisierelor si mesajele afisate.
+    return input('Pentru a juca din nou introduce orice valoare.\nDaca nu mai doresti sa continui, apasa ENTER.\n')
